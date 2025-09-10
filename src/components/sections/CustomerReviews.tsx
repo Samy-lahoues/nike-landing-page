@@ -14,8 +14,8 @@ const CustomerReviews = () => {
         </p>
       </div>
       <div className="grid-container">
-        {customers.map((customer) => (
-          <CustomerCard key={customer.name} {...customer} />
+        {customers.map((customer, index) => (
+          <CustomerCard key={customer.name} index={index} {...customer} />
         ))}
       </div>
     </section>

@@ -1,7 +1,19 @@
 import type { serviceType } from "@/constants";
-const ServiceCard = ({ name, description, iconUrl }: serviceType) => {
+
+const ServiceCard = ({
+  name,
+  description,
+  iconUrl,
+  animationRangeFrom,
+  animationRangeTo,
+}: serviceType) => {
   return (
-    <div className="rounded-xl bg-white shadow-lg px-10 py-16 flex flex-col items-start w-full">
+    <div
+      style={{
+        animationRange: `entry ${animationRangeFrom}% cover ${animationRangeTo}%`,
+      }}
+      className={`rounded-xl bg-white shadow-lg px-10 py-16 flex flex-col items-start w-full fadeUp`}
+    >
       <div className="p-3 bg-primary rounded-full">
         <img
           src={iconUrl}

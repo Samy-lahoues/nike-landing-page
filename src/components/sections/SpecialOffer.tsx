@@ -1,7 +1,37 @@
 import { offer } from "../../constants/images";
 import { arrowRight } from "@/constants/images";
 import Button from "../ui/Button";
+import { useEffect, useRef } from "react";
+
 const SpecialOffer = () => {
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute("data-animated", "true");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      },
+    );
+
+    if (textRef.current) {
+      observer.observe(textRef.current);
+    }
+
+    return () => {
+      if (textRef.current) {
+        observer.unobserve(textRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="flex justify-between items-center max-xl:flex-col-reverse gap-10 max-container">
       <div className="flex-1">
@@ -13,8 +43,8 @@ const SpecialOffer = () => {
           alt="Shoe Promotion"
         />
       </div>
-      <div className="flex flex-col gap-10 ">
-        <div className="flex flex-col">
+      <div className="flex flex-col gap-10">
+        <div ref={textRef} className="flex flex-col slideInFromRight">
           <h1 className="text-5xl font-bold leading-14">
             <span className="text-primary">Special </span>Offer
           </h1>

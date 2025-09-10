@@ -23,8 +23,10 @@ const products: productType[] = [
 ];
 export interface serviceType {
   name: string;
-  iconUrl: string;
   description: string;
+  iconUrl: string;
+  animationRangeFrom: number;
+  animationRangeTo: number;
 }
 const services: serviceType[] = [
   {
@@ -32,18 +34,24 @@ const services: serviceType[] = [
     name: "Free shipping",
     description:
       "Enjoy seamless shopping with our complimentary shipping service.",
+    animationRangeFrom: 20,
+    animationRangeTo: 40,
   },
   {
     iconUrl: shield,
     name: "Secure Payment",
     description:
       "Experience worry-free transactions with our secure payment options.",
+    animationRangeFrom: 40,
+    animationRangeTo: 60,
   },
   {
     iconUrl: support,
     name: "Love to help you",
     description:
       "Our dedicated team is here to assist you every step of the way.",
+    animationRangeFrom: 60,
+    animationRangeTo: 80,
   },
 ];
 export interface customerType {

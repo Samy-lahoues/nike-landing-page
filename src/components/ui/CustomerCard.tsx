@@ -1,8 +1,20 @@
 import { star } from "@/constants/images";
 import type { customerType } from "@/constants";
-const CustomerCard = ({ name, openion, rate, imgUrl }: customerType) => {
+interface CustomerCardProps extends customerType {
+  index: number;
+}
+
+const CustomerCard = ({
+  name,
+  openion,
+  rate,
+  imgUrl,
+  index,
+}: CustomerCardProps) => {
   return (
-    <div className="w-full bg-transparent flex flex-col items-center">
+    <div
+      className={`w-full bg-transparent flex flex-col items-center testimonial ${index === 0 ? "left" : "right"}`}
+    >
       <img
         src={imgUrl}
         className="rounded-full w-[120px] h-[120px]"
