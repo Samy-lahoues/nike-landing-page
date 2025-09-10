@@ -4,7 +4,7 @@ A modern, responsive Nike-inspired web application built with React, TypeScript,
 
 ## 📸 Screenshots
 
-![App Screenshot](.public/screenshot.png)
+![App Screenshot](./public/screenshot.png)
 
 
 ## ✨ Features
