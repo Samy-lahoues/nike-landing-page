@@ -39,7 +39,7 @@ const SpecialOffer = () => {
           src={offer}
           width={773}
           height={687}
-          className="object-contain"
+          className="object-contain imageSlideInFromRight"
           alt="Shoe Promotion"
         />
       </div>
