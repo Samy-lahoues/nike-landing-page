@@ -1,5 +1,7 @@
 import { star } from "@/constants/images";
 import type { customerType } from "@/constants";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+
 interface CustomerCardProps extends customerType {
   index: number;
 }
@@ -11,9 +13,24 @@ const CustomerCard = ({
   imgUrl,
   index,
 }: CustomerCardProps) => {
+  const { elementRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+    triggerOnce: true,
+  });
+
+  const animationDelay = index * 200; // Stagger animations by 200ms
+
   return (
     <div
-      className={`w-full bg-transparent flex flex-col items-center testimonial ${index === 0 ? "left" : "right"}`}
+      ref={elementRef}
+      className={`w-full bg-transparent flex flex-col items-center testimonial ${
+        index === 0 ? "left" : "right"
+      } ${isIntersecting ? "animate" : ""}`}
+      style={{
+        transitionDelay: `${animationDelay}ms`,
+        animationDelay: `${animationDelay}ms`,
+      }}
     >
       <img
         src={imgUrl}

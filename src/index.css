@@ -49,10 +49,14 @@ html {
 
 .grid-container {
     width: 100%;
+    max-width: 1440px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
+    overflow: hidden;
+    margin: 0 auto;
 }
+
 @theme {
     --color-primary: #ff6452;
     --color-bg: #eceeff;
@@ -405,41 +409,100 @@ html {
     }
 }
 
+/* Testimonial Animations */
 .testimonial {
     opacity: 0;
     transform: translateY(50px);
-    animation: fadeSlideUp 1s ease forwards;
-    animation-timeline: view();
-    animation-range: entry 0% cover 30%;
+    transition: all 0.8s ease-out;
 }
 
 .testimonial.left {
+    opacity: 0;
     transform: translateX(-100px);
-    animation-name: fadeSlideLeft;
+    transition: all 0.8s ease-out;
 }
 
 .testimonial.right {
+    opacity: 0;
     transform: translateX(100px);
-    animation-name: fadeSlideRight;
+    transition: all 0.8s ease-out;
+}
+
+/* Animated state when intersecting */
+.testimonial.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial.left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.testimonial.right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animation timeline support for modern browsers */
+@supports (animation-timeline: view()) {
+    .testimonial {
+        animation: fadeSlideUp 1s ease-out forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+        transition: none;
+    }
+
+    .testimonial.left {
+        animation: fadeSlideLeft 1s ease-out forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+        transition: none;
+    }
+
+    .testimonial.right {
+        animation: fadeSlideRight 1s ease-out forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+        transition: none;
+    }
+
+    /* Override animate class when using animation-timeline */
+    .testimonial.animate,
+    .testimonial.left.animate,
+    .testimonial.right.animate {
+        transition: none;
+    }
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeSlideLeft {
-    from {
+    0% {
         opacity: 0;
         transform: translateX(-100px);
     }
-    to {
+    100% {
         opacity: 1;
         transform: translateX(0);
     }
 }
 
 @keyframes fadeSlideRight {
-    from {
+    0% {
         opacity: 0;
         transform: translateX(100px);
     }
-    to {
+    100% {
         opacity: 1;
         transform: translateX(0);
     }
